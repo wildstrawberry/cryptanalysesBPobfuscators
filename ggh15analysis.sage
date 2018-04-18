@@ -1,5 +1,5 @@
 """
-Cryptanalysis of GGH15 for input paritition pattern XZXZ.
+Cryptanalysis of GGH15 for branching program step pattern XZXZ.
 A proof-of-concept implementation of the rank attack.
 
 Setting of the attack: we assume u=xz is a zero input.
@@ -10,9 +10,9 @@ We make the following simplification:
 1. Assume the D matrices are also from random instead of sampling from discrete Gaussian.
 2. No dummy branch, assume the function evaluates to zero by default.
 
-We distinguish the following 2 branching programs:
-mode 0: every branch is identity.  Expected rank when r=1:   m^3+2*m^2+2*m+2
-mode 1: where P is some w-cycle. Note that it still computes all-identity function. Expected rank when r=1:   m^3+2*m^2+2*m+4
+It can be used to distinguish the following 2 branching programs:
+mode 0: every branch is an identity matrix.  Expected rank when r=1: m^3+2*m^2+2*m+2
+mode 1: where P is some w-cycle. It still computes all-identity function. Expected rank when r=1: m^3+2*m^2+2*m+4
  I, I, I   , I
  P, P, P^-1, P^-1
 --------------------
@@ -114,7 +114,6 @@ def test(rep, mode):
     S, E, D[j][k] represents the components, j in [Wdimmax], k in [kappa]
     S[j][k], j-th index combination, k-th branch
     same for E[j][k], D[j][k]
-    
     """
 
     kappa = 2*rep
